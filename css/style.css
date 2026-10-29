@@ -266,16 +266,19 @@ p { line-height: 1.65; font-size: 14.5px; margin: 0 0 12px; color: #26345a; }
   z-index: 2;
   pointer-events: none;
 }
+.folder { container-type: size; }
 .cover-inner {
   display: flex;
   flex-direction: column;
-  padding: 26px 22px 18px 38px;
+  overflow: hidden; /* cover never scrolls: everything is sized to fit */
+  padding: 4.2cqh 22px 2.6cqh 38px;
 }
 .polaroid {
   position: relative;
-  width: min(56%, 218px);
-  margin: 14px 0 0 -6px;
-  padding: 10px 10px 4px;
+  flex: none;
+  width: min(47cqw, 30cqh);
+  margin: 2.4cqh 0 0 -6px;
+  padding: 8px 8px 2px;
   background: #fffefb;
   box-shadow: 0 8px 18px -8px rgba(40, 30, 10, .45), 0 1px 0 rgba(0, 0, 0, .06);
   transform: rotate(-4deg);
@@ -290,29 +293,28 @@ p { line-height: 1.65; font-size: 14.5px; margin: 0 0 12px; color: #26345a; }
 @keyframes steam { 0%, 100% { stroke-dashoffset: 30; opacity: 0; } 40% { opacity: .9; } 100% { stroke-dashoffset: -30; } }
 .polaroid figcaption {
   font-family: var(--f-hand);
-  font-size: 21px;
+  font-size: clamp(15px, 2.7cqh, 21px);
   text-align: center;
-  padding: 6px 0 4px;
+  padding: 4px 0 3px;
   color: var(--ink);
 }
-.clip { position: absolute; top: -26px; left: 18px; width: 54px; height: auto; filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .25)); transform: rotate(6deg); }
 
-.hero { margin-top: auto; padding-top: 18px; }
-.hello { font-family: var(--f-script); font-size: 38px; line-height: 1; margin: 0 0 -2px 4px; color: var(--ink); }
+.hero { margin-top: auto; padding-top: 1.6cqh; min-height: 0; }
+.hello { font-family: var(--f-script); font-size: clamp(26px, 5.2cqh, 38px); line-height: 1; margin: 0 0 -2px 4px; color: var(--ink); }
 .hero h1 {
   margin: 0;
   font-family: var(--f-serif);
   font-weight: 900;
-  font-size: clamp(54px, 17vw, 74px);
+  font-size: min(17cqw, 8.6cqh);
   line-height: .93;
   letter-spacing: -.035em;
   color: var(--ink);
 }
 .dotlabel {
   display: inline-block;
-  margin: 18px 0 10px;
-  padding: 7px 12px;
-  font-size: 12.5px;
+  margin: 2.2cqh 0 1.2cqh;
+  padding: 6px 11px;
+  font-size: clamp(10.5px, 1.75cqh, 12.5px);
   font-weight: 700;
   letter-spacing: .01em;
   line-height: 1.2;
@@ -324,13 +326,26 @@ p { line-height: 1.65; font-size: 14.5px; margin: 0 0 12px; color: #26345a; }
   box-shadow: 0 4px 10px -4px rgba(40, 30, 10, .35);
   transform: rotate(-1deg);
 }
-.sub { font-size: 13.5px; color: #3a4668; margin-bottom: 0; }
+.sub { font-size: clamp(11.5px, 1.9cqh, 13.5px); line-height: 1.5; color: #3a4668; margin-bottom: 0; }
 
-.cover-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 18px; }
-.hint { display: flex; align-items: center; gap: 8px; font-family: var(--f-hand); font-size: 20px; color: var(--ink-soft); margin: 0; }
+.cover-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 1.8cqh; }
+.hint { display: flex; align-items: center; gap: 8px; font-family: var(--f-hand); font-size: clamp(16px, 2.6cqh, 20px); color: var(--ink-soft); margin: 0; }
 .hint .ico { animation: nudge 1.6s ease-in-out infinite; }
 @keyframes nudge { 50% { transform: translateX(7px); } }
-.stamp { width: 92px; height: 92px; color: var(--ink); opacity: .85; transform: rotate(-12deg); --rest: rotate(-12deg); --rot0: -40deg; }
+/* stamp sits in the free space to the right of the polaroid */
+.stamp {
+  position: absolute;
+  top: 7cqh;
+  right: 50px;
+  width: min(21cqw, 12cqh);
+  height: auto;
+  aspect-ratio: 1;
+  color: var(--ink);
+  opacity: .85;
+  transform: rotate(-12deg);
+  --rest: rotate(-12deg);
+  --rot0: -40deg;
+}
 .stamp.pop { mix-blend-mode: multiply; }
 
 .ftab {
