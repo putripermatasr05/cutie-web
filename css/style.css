@@ -521,6 +521,66 @@ p { line-height: 1.65; font-size: 14.5px; margin: 0 0 12px; color: #26345a; }
 .ticket .badge { margin-bottom: 8px; }
 
 /* =========================================================
+   MINI SCRAPBOOK PHOTOS (small compact photos)
+   ========================================================= */
+.card-content, .ticket-content {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+.card-content .ticks, .ticket-content .ticks {
+  flex: 1;
+  min-width: 0;
+}
+.mini-scrap {
+  flex: none;
+  width: clamp(62px, 18vw, 72px);
+  margin: 2px 0 6px auto;
+  padding: 4px 4px 3px;
+  background: #fff;
+  border: 1px solid rgba(27, 42, 74, .18);
+  box-shadow: 0 4px 10px -3px rgba(27, 42, 74, .35);
+  transform: rotate(var(--rot, 0deg));
+  border-radius: 2px;
+  position: relative;
+}
+.mini-scrap::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 28px;
+  height: 10px;
+  transform: translateX(-50%) rotate(var(--tape-rot, -2deg));
+  background: rgba(255, 245, 205, .75);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+  pointer-events: none;
+}
+.mini-scrap img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 1px;
+}
+.mini-scrap figcaption {
+  font-family: var(--f-hand);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  padding-top: 3px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.certificate .mini-scrap {
+  margin: 0 0 0 auto;
+}
+
+/* =========================================================
    KETERAMPILAN
    ========================================================= */
 .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 8px; }
