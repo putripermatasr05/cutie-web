@@ -691,6 +691,10 @@ p { line-height: 1.65; font-size: 14.5px; margin: 0 0 12px; color: #26345a; }
 :focus-visible { outline: 3px solid var(--denim-d); outline-offset: 3px; }
 
 /* ---------- Back faces (left page of the open book) ---------- */
+/* only the face that faces the reader may receive touch/scroll gestures */
+.sheet:not(.flipped) .face.back { pointer-events: none; }
+.sheet.flipped .face.front { pointer-events: none; }
+.sheet.flipped .face.back .scroller { touch-action: pan-y; }
 .face.back .scroller { padding: 34px 40px 36px 20px; }
 .face.back::after { background: linear-gradient(270deg, rgba(18, 24, 44, .95), rgba(18, 24, 44, .25)); }
 .face.back.paper::before {
